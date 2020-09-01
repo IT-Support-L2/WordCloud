@@ -1,6 +1,6 @@
+# importing necessary modules
 
 import re
-import matplotlib.pyplot as pPlot
 from wordcloud import WordCloud, STOPWORDS
 
 # path of your txt file
@@ -12,7 +12,7 @@ text = open(path, encoding='utf-8')
 # using text.read() method to return string
 new_text = text.read()
 
-# delete all punctuations using regex and re,sub from python re module
+# delete all punctuations using regex and re.sub from python re module
 res = re.sub(r'[^\w\s]', '', new_text) 
 
 # splitting each word apart
@@ -32,7 +32,7 @@ dictionary = {}
 
 lst = result.split()
 
-# count words frequencies
+# count words frequencies and append each word with its frequency count into the dictionary
 for elements in lst:  
     
     if elements in dictionary: 
@@ -40,7 +40,8 @@ for elements in lst:
     else: 
         dictionary.update({elements: 1})
 
-# wordcloud to generate image from words frequences dictionary
+# generate image from words frequencies dictionary
+
 cloud = WordCloud(background_color = "white", max_words = 5000, stopwords = set(STOPWORDS))
 cloud.generate_from_frequencies(dictionary)
 cloud.to_file("wordCloud.png")
